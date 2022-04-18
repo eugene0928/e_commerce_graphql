@@ -1,0 +1,18 @@
+[
+    {
+        "userId": 1,
+        "username": "Umid",
+        "password": "9dbfa3323a04bff64947993050037ee4d167c81cb87cac0e885a5cc1df1f2b50",
+        "contact": "998936215272",
+        "email": "birnima@gmail.com",
+        "data": "2022-04-17"
+    },
+    {
+        "userId": 2,
+        "username": "Umidjon",
+        "password": "9dbfa3323a04bff64947993050037ee4d167c81cb87cac0e885a5cc1df1f2b50",
+        "contact": "998936215272",
+        "email": "umid@gmail.com",
+        "data": "2022-04-18"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "id": 2,
+        "username": "umid",
+        "password": "ff2392501f723e1389972c5ff37b111d48f9799512581f0c4bb5ef8edb169cd8",
+        "contact": "998936215272",
+        "email": "umid09@gmail.com",
+        "date": "2022-04-17"
+    },
+    {
+        "id": 3,
+        "username": "alex",
+        "password": "a8b904cb3f205dd129e3932d3de731b55204358be7a671b77a314a946c36cc66",
+        "contact": "998936215272",
+        "email": "alex@gmail.com",
+        "date": "2022-04-18"
+    }
+]

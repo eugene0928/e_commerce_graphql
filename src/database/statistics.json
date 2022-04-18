@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "monthlyPaidMoney": null,
+        "monthlyUnpaidMoney": null,
+        "mostSoldProducts": [
+            "ball"
+        ],
+        "leastSoldProducts": null 
+    }
+]

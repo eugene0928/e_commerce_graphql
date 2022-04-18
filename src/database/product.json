@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "categoryId": 1,
+        "name": "ball",
+        "price": 120000,
+        "shortDesc": "original",
+        "longDesc": "light and very affordable",
+        "img": "./images/ball.jpg"
+    },
+    {
+        "id": 2,
+        "categoryId": "2",
+        "name": "hp",
+        "price": 7000000,
+        "shortDesc": "hp computer",
+        "longDesc": "this is awesome laptop for all",
+        "img": "./images/1650273674136photo_2022-04-18_14-07-54.jpg"
+    }
+]

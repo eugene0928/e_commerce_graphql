@@ -1,0 +1,27 @@
+{
+  "name": "net_magazin_graphql",
+  "version": "1.0.0",
+  "description": "api for internet shop",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Umidjon Tukhtaev",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-tools/schema": "^8.3.9",
+    "apollo-server": "^3.6.7",
+    "apollo-server-express": "^3.6.7",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-fileupload": "^1.3.1",
+    "graphql": "^16.3.0",
+    "graphql-upload": "^13.0.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.15",
+    "sha256": "^0.2.0"
+  }
+}

@@ -1,0 +1,18 @@
+type Query {
+    categories (id: ID): [Category!]!
+}
+
+type Mutation {
+    addCategory(token: String!, categoryName: String!): CategoryRes!
+}
+
+type Category {
+    categoryId: ID!
+    categoryName: String!
+}
+
+type CategoryRes {
+    status: Int!
+    message: String!
+    data: Category!
+}

@@ -1,0 +1,13 @@
+type Query {
+    statics(token: String!): StaticRes!
+}
+
+type StaticRes {
+    status: Int!
+    id: ID!
+    monthlyPaidMoney: Int
+    monthlyUnpaidMoney: Int
+    mostSoldProduct: String
+    leadtSoldProduct: String
+    message: String!
+}

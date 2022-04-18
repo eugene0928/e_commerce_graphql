@@ -1,0 +1,25 @@
+type Query {
+    orders(token: String!, id: ID): [Order]
+}
+
+type Mutation {
+    addOrder(token: String!, product: String!): OrderRes!
+}
+
+type Order {
+    orderId: ID
+    userId: ID
+    products: [Product]
+    totalPrice: Int
+    isPaid: Boolean
+    message: String
+}
+
+type Product {
+    name: String
+}
+
+type OrderRes {
+    status: Int!
+    message: String!
+}

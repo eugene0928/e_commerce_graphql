@@ -1,0 +1,12 @@
+type Query {
+    payment: Boolean!
+}
+
+type Mutation {
+    payOrder(token: String!): PaymentRes!
+}
+
+type PaymentRes {
+    status: Int!
+    message: String!
+}

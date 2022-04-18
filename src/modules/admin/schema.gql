@@ -1,0 +1,24 @@
+type Query {
+    admins(token: String! id: ID): [Admin] 
+}
+
+type Mutation {
+    addAdmin(token: String!, username: String!, password: String!, contact: String!, email: String!): AdminRes!
+    deleteAdmin(token: String!, id: ID!): AdminRes!
+}
+
+type Admin {
+    id: ID
+    username: String
+    password: String
+    contact: String
+    email: String
+    date: String
+}
+
+type AdminRes {
+    status: Int!
+    message: String!
+    data: Admin
+    token: String
+}

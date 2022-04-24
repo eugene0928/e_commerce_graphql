@@ -3,12 +3,12 @@ type Query {
 }
 
 type Mutation {
-    addOrder(token: String!, product: String!): OrderRes!
+    addOrder(token: String!, product: String!, username: String!): OrderRes!
 }
 
 type Order {
     orderId: ID
-    userId: ID
+    user: User
     products: [Product]
     totalPrice: Int
     isPaid: Boolean

@@ -3,40 +3,50 @@ import sha256 from 'sha256'
 
 export default {
     Query: {
-        orders: (_, { token, id }, { read }) => {
+        orders: (_, { token, id }, { helper: {read}, userAgent }) => {
            try {
                //check token
-                const { userId, password } = JWT.verify(token) 
+                const { userId, password, agent } = JWT.verify(token) 
                 const admins = read('admin')
                 const validAdmin = admins.find(admin => admin.id == userId && admin.password == password)
-                if(!validAdmin) {
-                    return {
+                if(!validAdmin || agent != userAgent) {
+                    return [{
                         orderId: null,
                         userId: null,
                         products: null, 
                         totalPrice: null,
                         isPaid: null,
-                        message: "Such admin does not exist!"
-                    }
+                        message: "Such admin does not exist or request is sent from wrong device!"
+                    }]
                 }
 
                 return read('order').filter( order => id ? order.orderId == id : true )
            } catch (error) {
-               return {
+               return [{
                     orderId: null,
                     userId: null,
                     products: null,
                     totalPrice: null,
                     isPaid: null,
                     message: error.message
-               }
+               }]
            }
            
         }
     },
 
+    Order: {
+        user: ({ userId }, __, { helper: { read } }) => {
+            const users = read('user')
+            return users.find(user => user.userId == userId)
+        },
+        products: () => {
+            return ['a']
+        }
+    }, 
+
     Mutation: {
-        addOrder: (parent, { token, product }, { read, write }) => {
+        addOrder: (parent, { token, product, username }, { helper: {read, write}, userAgent }) => {
             try {
                 if(!token) {
                     return {
@@ -45,18 +55,17 @@ export default {
                     }
                 }
                 //unfold token
-                const { userId, password } = JWT.verify(token)
+                const { userId, password, agent } = JWT.verify(token)
                 const users = read('user')
-                const validUser = users.find(user => user.userId == userId && user.password == password)
-                if(!validUser) {
+                const validUser = users.find(user => user.userId == userId && user.password == password && user.username == username)
+                if(!validUser || agent != userAgent) {
                     return {
                         status: 404,
-                        message: "The user is not found!"
+                        message: "The user is not found or request is sent from wrong device!"
                     }
                 }
 
                 const allProducts = read('product')
-                console.log(allProducts, product)
                 const Product = allProducts.find(products => products.name == product)
                 if( !Product ) {
                     return {

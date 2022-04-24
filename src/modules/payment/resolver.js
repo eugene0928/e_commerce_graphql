@@ -7,7 +7,7 @@ export default {
     },
 
     Mutation: {
-        payOrder: (parent, { token }, { read, write }) => {
+        payOrder: (parent, { token }, { helper: {read, write} }) => {
             try {
                 if(!token) {
                     return {

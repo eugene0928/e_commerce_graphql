@@ -6,6 +6,7 @@ import http from 'http'
 import fileUpload from 'express-fileupload'
 import helper from './utils/helper.js'
 import { schema } from './modules/index.js'
+import { join } from 'path'
 import "./utils/validation.js"
 import { post } from './modules/product/post.js'
 import { delProduct } from './modules/product/delProduct.js'
@@ -21,6 +22,7 @@ async function startApolloserver() {
         ]
     } )
     app.use(fileUpload())
+    app.use(express.static(join(process.cwd(), 'src', 'public')))
     app.use((req, res, next) => {
         req.helper = helper
         next()

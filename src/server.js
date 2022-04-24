@@ -10,12 +10,16 @@ import { join } from 'path'
 import "./utils/validation.js"
 import { post } from './modules/product/post.js'
 import { delProduct } from './modules/product/delProduct.js'
+import user from './modules/user/index.js'
 
 async function startApolloserver() {
     const app = express()
     const httpServer = http.createServer(app)
     const server = new ApolloServer( {
-        context: (req, res) => helper,
+        context: ({req, res}) => {
+            const userAgent = req.headers['user-agent']
+            return { helper, userAgent }
+        },
         schema,
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer })

@@ -14,5 +14,21 @@
         "contact": "998936215272",
         "email": "umid@gmail.com",
         "data": "2022-04-18"
+    },
+    {
+        "userId": 3,
+        "username": "Benjamin",
+        "password": "9dbfa3323a04bff64947993050037ee4d167c81cb87cac0e885a5cc1df1f2b50",
+        "contact": "998936215272",
+        "email": "umid@gmail.com",
+        "data": "2022-04-24"
+    },
+    {
+        "userId": 4,
+        "username": "Alex",
+        "password": "cce0867f339bbb19b56267dab11d92abc0ba9ed407f0d22e4977dabe01f0536d",
+        "contact": "998936215272",
+        "email": "umid@gmail.com",
+        "data": "2022-04-24"
     }
 ]

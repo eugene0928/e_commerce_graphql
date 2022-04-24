@@ -3,14 +3,14 @@ import { join } from 'path'
 export const post = (req, res, next) => {
     try {
         const { helper } = req
-        const { token } = req.headers
-        const { userId, password } = JWT.verify(token)
+        const { token, 'user-agent': userAgent } = req.headers
+        const { userId, password, agent } = JWT.verify(token)
 
         const admins = helper.read('admin')
         const validAdmin = admins.find(admin => admin.id == userId && admin.password == password)
-        if(!validAdmin) {
+        if(!validAdmin || agent != userAgent ) {
             return res.status(404)
-                       .json({ status: 404, message: "Such admin is not found!" })
+                       .json({ status: 404, message: "Such admin is not found or request is sent from wrong device!" })
         }
         const { categoryId, name, price, shortDesc, longDesc } = req.body
         const file = req.files.file
@@ -69,4 +69,4 @@ export const post = (req, res, next) => {
        res.status(500)
             .json({ status: 500, message: error.message })
    }
-}
+} 

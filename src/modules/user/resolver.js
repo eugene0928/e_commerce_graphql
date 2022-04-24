@@ -3,14 +3,14 @@ import JWT from '../../utils/jwt.js'
 
 export default {
     Query: {
-        users: (_, { token, id }, { read }) => {
+        users: (_, { token, id }, { helper: { read } }) => {
             //check token
             return read('user').filter(user => id ? user.userId == id : true)
         }
     },
 
     Mutation: {
-        register: (_, { username, password, contact, email }, { read, write }) => {
+        register: (_, { username, password, contact, email }, { helper: {read, write}, userAgent }) => {
             const { error } = process.Joi.schema.validate({ username, password, contact, email })
             if(error) {
                 return {
@@ -45,11 +45,11 @@ export default {
             return {
                 status: 200,
                 message: "New user is registered successfully!",
-                token: JWT.sign({ userId: newUser.userId, password: newUser.password }),
+                token: JWT.sign({ userId: newUser.userId, password: newUser.password, agent: userAgent }),
                 data: newUser
             }
         }, 
-        login: (_, { username, password }, { read }) => {
+        login: (_, { username, password }, { helper: {read}, userAgent }) => {
             const users = read('user')
             const validUser = users.find(user => user.username == username && user.password == sha256(password))
 
@@ -65,7 +65,7 @@ export default {
             return {
                 status: 200,
                 message: "The user successfully logged in!",
-                token: JWT.sign({ userId: validUser.userId, password: validUser.password })
+                token: JWT.sign({ userId: validUser.userId, password: validUser.password, agent: userAgent })
             }
         }
     } 

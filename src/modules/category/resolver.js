@@ -2,22 +2,22 @@ import JWT from '../../utils/jwt.js'
 
 export default {
     Query: {
-        categories: (_, { id }, { read }) => {
+        categories: (_, { id }, { helper: {read} }) => {
             return read('category').filter( type => id ? type.categoryId == id : true )
         }
     },
 
     Mutation: {
-        addCategory: (parent, { token, categoryName }, { read, write }) => {
+        addCategory: (parent, { token, categoryName }, { helper: {read, write}, userAgent }) => {
             try {
                 // check token 
-                const { userId, password } = JWT.verify(token)
+                const { userId, password, agent } = JWT.verify(token)
                 const admins = read('admin')
                 const validAdmin = admins.find(admin => admin.id == userId && admin.password == password)
-                if(!validAdmin) {
+                if(!validAdmin || agent != userAgent) {
                     return {
                         status: 404,
-                        message: "Such admin is not found!",
+                        message: "Such admin is not found or request is sent from wrong device!",
                         data: null
                     }
                 }

@@ -20,14 +20,14 @@ export default {
                
                 return read('admin').filter(admin => id? admin.id == id : true)
             } catch (error) {
-                return {
+                return [{
                     id: null,
                     username: null,
                     password: null,
                     contact: null,
                     email: null, 
                     date: null
-                }
+                }]
             }
         }
         
